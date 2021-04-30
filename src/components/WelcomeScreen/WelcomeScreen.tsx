@@ -38,8 +38,9 @@ export const WelcomeScreen: FC = observer(() => {
     <animated.div style={props} className="d-flex justify-content-center align-items-center vh-100">
       <div>
         <b data-testid="welcome">Hello friend, tell me your name...</b>
-        <form autoComplete="off" onSubmit={formik.handleSubmit}>
+        <form data-testid="submit" autoComplete="off" onSubmit={formik.handleSubmit}>
           <TextInput
+            data-testid="input"
             className="mt-5"
             theme={!formik.errors.name}
             placeholder="Your name here"
@@ -50,7 +51,7 @@ export const WelcomeScreen: FC = observer(() => {
             value={formik.values.name}
           />
           <P color='error' size='small' className="mb-5">{formik.errors.name}</P>
-          <StartButton data-testid="submit" type="submit">
+          <StartButton data-testid="click" type="submit">
             <div className="text-with-icon">
               <span> Let's go</span>
 

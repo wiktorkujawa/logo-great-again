@@ -47,7 +47,7 @@ const GamePlane: FC = observer(() => {
       <animated.div style={props} className="d-flex justify-content-between flex-wrap">
         {images.map((item: any, index: number) => {
           return (
-              <div>
+   
             <ImageSlot key={index} className="mt-3 " input>
               {item.src ? (
                 <img
@@ -69,7 +69,7 @@ const GamePlane: FC = observer(() => {
                 />
               ) : null}
             </ImageSlot>
-            </div>
+         
           );
         })}
       </animated.div>
@@ -150,7 +150,7 @@ const GamePlane: FC = observer(() => {
       0 ? (
         <>
           <div className="d-flex justify-content-between">
-            <P className="fw-bold">Good Luck, {store.game.playerName}!</P>
+            <P className="fw-bold" data-testid="submitName">Good Luck, {store.game.playerName}!</P>
             <IconText>
               <div className="text-with-icon">
                 <AccessTimeIcon className="mx-2" htmlColor="#00D2B4" />
