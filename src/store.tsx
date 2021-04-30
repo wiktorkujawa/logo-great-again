@@ -30,12 +30,12 @@ class GameStore {
 
   changeAdjusted(index:number) {
     this.game.lettersAdjusted[index].adjusted = true;
-    if(this.game.lettersAdjusted.filter(el => el.adjusted==true).length==5){
+    if(this.game.lettersAdjusted.filter(el => el.adjusted===false).length===0){
       clearInterval(this.game.timerStarted);
     }
   }
   wrongAdjusted(index:number) {
-    this.game.lettersAdjusted[index].order.filter((item:number) => item==index).length ?
+    this.game.lettersAdjusted[index].order.filter((item:number) => item===index).length ?
       this.game.lettersAdjusted[index].adjusted = true:
     this.game.lettersAdjusted[index].adjusted = false;
   }
@@ -53,7 +53,7 @@ class GameStore {
   }
 
   stopTimer() {
-    if(this.game.lettersAdjusted.filter(el => el.adjusted==false).length==0){
+    if(this.game.lettersAdjusted.filter(el => el.adjusted===false).length===0){
       clearInterval(this.game.timerStarted);
     }
   }

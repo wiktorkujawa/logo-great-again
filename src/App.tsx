@@ -1,7 +1,5 @@
-import React, { FC } from 'react';
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
-import { useStore } from './store';
 
 import { Switch, Route } from 'react-router-dom';
 import { NotFoundPage } from './components/NotFoundPage';
