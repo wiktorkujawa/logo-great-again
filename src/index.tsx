@@ -4,9 +4,18 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import { GameStore, StoreProvider } from './store';
+import { BrowserRouter } from 'react-router-dom';
+
+const store = new GameStore();
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <StoreProvider store={store}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+    </StoreProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
