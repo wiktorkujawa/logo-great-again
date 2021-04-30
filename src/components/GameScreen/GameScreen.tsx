@@ -8,6 +8,7 @@ import ImageSlot from "../styled/ImageSlot";
 import { shuffle } from "./utils/shuffleImages";
 import { StartButton } from "../styled/StartButton";
 import { Paper } from "@material-ui/core";
+import { animated, config, useSpring } from "react-spring";
 
 export const GameScreen = () => {
   return <GamePlane />;
@@ -25,6 +26,12 @@ shuffle(images);
 
 const GamePlane: FC = observer(() => {
   const store = useStore();
+  const props = useSpring({
+    to: { scale: 1 },
+    from: { scale: 3 },
+    delay: 200,
+    config: config.molasses,
+  });
 
   const [movedImage, setMovedImage] = useState({
     src: "",
@@ -35,10 +42,12 @@ const GamePlane: FC = observer(() => {
   const [initialSlot, setInitialSlot] = useState(false);
 
   const StartSlots = () => {
+   
     return (
-      <div className="d-flex justify-content-between flex-wrap">
+      <animated.div style={props} className="d-flex justify-content-between flex-wrap">
         {images.map((item: any, index: number) => {
           return (
+              <div>
             <ImageSlot key={index} className="mt-3 " input>
               {item.src ? (
                 <img
@@ -60,9 +69,10 @@ const GamePlane: FC = observer(() => {
                 />
               ) : null}
             </ImageSlot>
+            </div>
           );
         })}
-      </div>
+      </animated.div>
     );
   };
 
@@ -107,7 +117,7 @@ const GamePlane: FC = observer(() => {
 
           images[movedImage.index].src = "";
           if (
-            movedImage.order.filter((image) => image == index).length &&
+            movedImage.order.filter((image) => image === index).length &&
             !item.adjusted
           ) {
             store.changeAdjusted(index);
@@ -136,7 +146,7 @@ const GamePlane: FC = observer(() => {
 
   return (
     <div className="p-5 vh-100">
-      {store.game.lettersAdjusted.filter((el) => el.adjusted == false).length !=
+      {store.game.lettersAdjusted.filter((el) => el.adjusted === false).length !==
       0 ? (
         <>
           <div className="d-flex justify-content-between">
@@ -176,7 +186,15 @@ const GamePlane: FC = observer(() => {
 
 const WinMessage: FC = observer(() => {
   const store = useStore();
+  const props = useSpring({
+    to: { opacity: 1 },
+    from: { opacity: 0 },
+    // reset: true,
+    delay: 200,
+    config: config.molasses,
+  });
   return (
+    <animated.div style={props}>
     <Paper elevation={3} className="centered p-5">
       <Text data-testid="win">
         Congratulations {store.game.playerName}, you made our logo great again!
@@ -205,5 +223,6 @@ const WinMessage: FC = observer(() => {
         Click to start again!
       </StartButton>
     </Paper>
+    </animated.div>
   );
 });

@@ -7,6 +7,7 @@ import { useFormik } from "formik";
 import P from "../styled/P";
 import { useStore } from "../../store";
 import { observer } from "mobx-react-lite";
+import { animated, config, useSpring } from "react-spring";
 
 const validationSchema = yup.object({
   name: yup.string().required("Name is required"),
@@ -14,6 +15,13 @@ const validationSchema = yup.object({
 
 export const WelcomeScreen: FC = observer(() => {
   const store = useStore();
+  const props = useSpring({
+    to: { opacity: 1 },
+    from: { opacity: 0 },
+    // reset: true,
+    delay: 200,
+    config: config.molasses,
+  })
 
   const formik = useFormik({
     initialValues: {
@@ -27,7 +35,7 @@ export const WelcomeScreen: FC = observer(() => {
   });
 
   return (
-    <div className="d-flex justify-content-center align-items-center vh-100">
+    <animated.div style={props} className="d-flex justify-content-center align-items-center vh-100">
       <div>
         <b data-testid="welcome">Hello friend, tell me your name...</b>
         <form autoComplete="off" onSubmit={formik.handleSubmit}>
@@ -51,6 +59,6 @@ export const WelcomeScreen: FC = observer(() => {
           </StartButton>
         </form>
       </div>
-    </div>
+    </animated.div>
   );
 });
