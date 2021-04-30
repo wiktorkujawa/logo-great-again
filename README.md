@@ -1,3 +1,11 @@
+# Description
+
+App with simple browsed-based game to rebuild logo from letters.
+
+# Used frontend
+React typescript library, MobX for state management, styled-components, material-ui and bootstrap to create layout and react-spring to create animations. Formik and yup were also used for validation of field for Player name.
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
