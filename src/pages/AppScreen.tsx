@@ -1,6 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import React, { FC } from 'react'
 import { ThemeProvider } from 'styled-components';
+import { GameScreen } from '../components/GameScreen/GameScreen';
 import { WelcomeScreen } from '../components/WelcomeScreen/WelcomeScreen';
 import { useStore } from '../store';
 
@@ -19,7 +20,7 @@ export const AppScreen: FC = observer(() => {
     }}>
       {
         store.game.gameScreen ?
-        <div>Game Screen</div>
+        <GameScreen/>
       : 
       <WelcomeScreen/>
     }
